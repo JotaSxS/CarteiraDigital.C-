@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../CarteiraDigital.Application/CarteiraDigital.Application.csproj" Id="30e50de1-3cc0-4a24-a34d-478b7d74ec49" />
+  <Project Path="../CarteiraDigital.Core/CarteiraDigital.Core.csproj" Id="f7a9adf4-e52d-4e17-9ae5-7107985234df" />
+  <Project Path="../CarteiraDigital.Infrastructure/CarteiraDigital.Infrastructure.csproj" Id="93176731-9f4b-4a8e-8223-5d8993b8b5bb" />
+  <Project Path="../CarteiraDigital.Shared/CarteiraDigital.Shared.csproj" Id="7b5dc9a6-ccb0-4fe4-a364-e34d2bd7de9d" />
+  <Project Path="CarteiraDigital.Api.csproj" />
+</Solution>
