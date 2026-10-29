@@ -12,6 +12,7 @@ namespace CarteiraDigital.Api.Controllers
         public async Task<IActionResult> CadastrarAsync([FromBody] ClienteInputModel inputModel) 
         {
             var id = await _cadastrarClienteApplication.CadastrarAsync(inputModel);
+
             return Ok(id);
         }
     }
