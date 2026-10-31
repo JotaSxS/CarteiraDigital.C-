@@ -1,3 +1,4 @@
+using CarteiraDigital.Api.Extensions;
 using CarteiraDigital.Application;
 using CarteiraDigital.Infrastructure;
 
@@ -12,8 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddInfrastructure();
-builder.Services.AddApplication();
-
+builder.Services.AddApplication().AddValidators();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
