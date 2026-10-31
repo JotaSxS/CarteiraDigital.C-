@@ -1,4 +1,5 @@
-﻿using CarteiraDigital.Core.Interfaces.Applications;
+﻿using CarteiraDigital.Application.Applications;
+using CarteiraDigital.Core.Interfaces.Applications;
 using CarteiraDigital.Core.Models.inputModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,8 @@ namespace CarteiraDigital.Api.Controllers
     public class  ClienteController(
         ICadastrarClienteApplication cadastrarClienteApplication,
         IBuscarClientesApplication buscarClientesApplication,
-        IBuscarClientePorIdApplication buscarClientePorIdApplication
+        IBuscarClientePorIdApplication buscarClientePorIdApplication,
+        IAtualizarClienteApplication atualizarClienteApplication
         ) : MainController
     {
       
@@ -38,6 +40,13 @@ namespace CarteiraDigital.Api.Controllers
 
             return Ok(cliente);
 
+        }
+
+        [HttpPut(("{id}"))]
+        public async Task<IActionResult> AtualizarAsync([FromRoute] Guid id, [FromBody] AtualizarClienteInputModel inputModel)
+        {
+            await atualizarClienteApplication.AtualizarAsync(id, inputModel);
+            return NoContent();
         }
     }
 }
