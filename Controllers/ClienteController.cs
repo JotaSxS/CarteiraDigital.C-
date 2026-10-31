@@ -4,16 +4,40 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarteiraDigital.Api.Controllers
 {
-    public class  ClienteController(ICadastrarClienteApplication cadastrarClienteApplication) : MainController
+    public class  ClienteController(
+        ICadastrarClienteApplication cadastrarClienteApplication,
+        IBuscarClientesApplication buscarClientesApplication,
+        IBuscarClientePorIdApplication buscarClientePorIdApplication
+        ) : MainController
     {
-        private readonly ICadastrarClienteApplication _cadastrarClienteApplication = cadastrarClienteApplication;
-
+      
         [HttpPost]
         public async Task<IActionResult> CadastrarAsync([FromBody] ClienteInputModel inputModel) 
         {
-            var id = await _cadastrarClienteApplication.CadastrarAsync(inputModel);
+            var id = await cadastrarClienteApplication.CadastrarAsync(inputModel);
 
             return Ok(id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BuscarAsync()
+        {
+            var clientes = await buscarClientesApplication.BuscarAsync();
+            return Ok(clientes);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> BuscarPorIdAsync([FromRoute] Guid id) 
+        {
+            var cliente = await buscarClientePorIdApplication.BuscarPorIdAsync(id);
+
+            if (cliente == null) 
+            {
+                return NotFound();
+            }
+
+            return Ok(cliente);
+
         }
     }
 }
